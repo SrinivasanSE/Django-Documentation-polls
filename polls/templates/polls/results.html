@@ -1,0 +1,16 @@
+{% extends 'polls/base.html' %}
+{% block title %}
+Results
+{% endblock title %}
+{% block content %}
+
+<div class="text-center bg-info">
+<h1 class="text-secondary">Poll Results for</h1>
+<h1 class="text-primary">{{question.question_text}}</h1>
+    {% for choice in question.choice_set.all %}
+    <p>{{forloop.counter}}) {{choice.choice_text}}--<span class="badge" >{{choice.votes}} </span>vote{{ choice.votes|pluralize }}</p>
+    {% endfor %}
+<a class="btn btn-info" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+<a class="btn btn-primary" href="/polls/">Return to Home page</a>
+</div>
+{% endblock content %}

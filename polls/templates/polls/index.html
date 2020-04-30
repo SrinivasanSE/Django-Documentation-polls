@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+{% load static %}
+{% block title %}
+HOME
+{% endblock title %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+{% block content %}
+<div class="panel panel-primary">
+    <div class="panel-heading" >Click the below questions to vote</div>
+    <div class="panel-body">
+{% if latest_question_list %}
+<ul>
+{% for question in latest_question_list %}
+    <li><a class="text-success" href="{% url 'polls:detail' question.id %}">{{question.question_text}}</a>
+    </li>
+    {% endfor %}
+</ul>
+    </div>
+{% else %}
+<p>No polls are available</p>
+{% endif %}
+</div>
+{% endblock content %}
